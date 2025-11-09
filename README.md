@@ -1,1 +1,705 @@
 # evgrafovmaksim27-ux.github.io
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VK: День без пароля</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #F5F5F5;
+            color: #0D0D0D;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #0077FF, #0055CC);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        nav {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #0D0D0D;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #0077FF;
+        }
+        
+        section {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #0077FF;
+            text-align: center;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #0077FF;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #0077FF;
+            margin-bottom: 0.5rem;
+        }
+        
+        .methods-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .method-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 2px solid #0077FF;
+            transition: all 0.3s ease;
+        }
+        
+        .method-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,119,255,0.2);
+        }
+        
+        .method-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #0077FF;
+            transition: transform 0.3s ease;
+        }
+        
+        .method-card:hover .method-icon {
+            transform: scale(1.2);
+        }
+        
+        .method-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #0077FF;
+        }
+        
+        .password-free-card {
+            background: linear-gradient(135deg, #0077FF, #0055CC);
+            color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .password-free-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 25px rgba(0,119,255,0.3);
+        }
+        
+        .password-free-title {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .audience-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .audience-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .audience-name {
+            font-size: 1.3rem;
+            color: #0077FF;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #0077FF;
+            padding-bottom: 0.5rem;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: #0077FF;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .timeline-content:hover {
+            transform: scale(1.05);
+        }
+        
+        .timeline-date {
+            font-weight: bold;
+            color: #0077FF;
+            margin-bottom: 0.5rem;
+        }
+        
+        .kpi-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        
+        .kpi-table th, .kpi-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            transition: background-color 0.3s ease;
+        }
+        
+        .kpi-table tr:hover td {
+            background-color: #f8f9fa;
+        }
+        
+        .kpi-table th {
+            background-color: #0077FF;
+            color: white;
+        }
+        
+        .budget-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .budget-item {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .budget-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .budget-category {
+            font-weight: bold;
+            color: #0077FF;
+            margin-bottom: 0.5rem;
+        }
+        
+        .budget-amount {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, #0077FF, #0055CC);
+            color: white;
+            text-align: center;
+            padding: 4rem 0;
+        }
+        
+        .cta-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: white;
+            color: #0077FF;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            background-color: #0D0D0D;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        footer {
+            background-color: #0D0D0D;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+            }
+            
+            .nav-links {
+                margin-top: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-links li {
+                margin: 0.5rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">VK</div>
+            <h1>День без пароля</h1>
+            <p>Массовая кампания по продвижению VK ID OnePass</p>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container nav-container">
+            <div>#ЛеттестомПароля</div>
+            <ul class="nav-links">
+                <li><a href="#problem">Проблема</a></li>
+                <li><a href="#solution">Решение</a></li>
+                <li><a href="#audience">Аудитория</a></li>
+                <li><a href="#plan">План</a></li>
+                <li><a href="#kpi">KPI</a></li>
+                <li><a href="#budget">Бюджет</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <section id="problem">
+        <div class="container">
+            <h2 class="section-title">Проблема ненадёжных паролей</h2>
+            
+            <div class="card">
+                <h3 class="card-title">Текущая ситуация с паролями в России</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">80%</div>
+                        <p>утечек данных из-за паролей</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">3.7 млн</div>
+                        <p>раз используется пароль "123456"</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">1 из 3</div>
+                        <p>россиян использует один пароль</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">< 1 сек</div>
+                        <p>для взлома популярного пароля</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3 class="card-title">Позиция VK в экосистеме</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">93.8 млн</div>
+                        <p>активных пользователей VK</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">66K+</div>
+                        <p>сервисов с VK ID</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">~50%</div>
+                        <p>используют OnePass</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="solution">
+        <div class="container">
+            <h2 class="section-title">Решение</h2>
+            
+            <div class="card">
+                <h3 class="card-title">Вход без пароля</h3>
+                
+                <div class="methods-grid">
+                    <div class="method-card">
+                        <div class="method-icon">👆</div>
+                        <div class="method-title">Отпечаток пальца</div>
+                        <p>Быстрый и безопасный вход с помощью биометрии</p>
+                    </div>
+                    
+                    <div class="method-card">
+                        <div class="method-icon">👤</div>
+                        <div class="method-title">Распознавание лица</div>
+                        <p>Просто посмотрите в камеру для входа в аккаунт</p>
+                    </div>
+                    
+                    <div class="method-card">
+                        <div class="method-icon">📱</div>
+                        <div class="method-title">Коды в SMS</div>
+                        <p>Одноразовые коды для максимальной безопасности</p>
+                    </div>
+                    
+                    <div class="method-card">
+                        <div class="method-icon">🔔</div>
+                        <div class="method-title">Push уведомления</div>
+                        <p>Подтвердите вход одним касанием в приложении</p>
+                    </div>
+                </div>
+                
+                <div class="password-free-card">
+                    <div class="password-free-title">Беспарольный вход VK ID</div>
+                    <p>Быстро, безопасно и удобно. Больше не нужно запоминать сложные пароли!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="audience">
+        <div class="container">
+            <h2 class="section-title">Целевые аудитории</h2>
+            
+            <div class="audience-grid">
+                <div class="audience-card">
+                    <h3 class="audience-name">Gen Z (13-24)</h3>
+                    <p>28% пользователей VK</p>
+                    <p>Цифровое поколение, подверженное трендам.</p>
+                </div>
+                
+                <div class="audience-card">
+                    <h3 class="audience-name">Профессионалы (25-35)</h3>
+                    <p>32% пользователей VK</p>
+                    <p>Ценящие эффективность и время.</p>
+                </div>
+                
+                <div class="audience-card">
+                    <h3 class="audience-name">Взрослые (36-50)</h3>
+                    <p>22% пользователей VK</p>
+                    <p>Консервативные, ценящие безопасность семьи.</p>
+                </div>
+                
+                <div class="audience-card">
+                    <h3 class="audience-name">Tech Enthusiasts</h3>
+                    <p>12% пользователей VK</p>
+                    <p>Разработчики и IT-специалисты.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="plan">
+        <div class="container">
+            <h2 class="section-title">План реализации</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Недели 1-3</div>
+                        <h3>Осведомленность</h3>
+                        <ul>
+                            <li>Тизерная кампания</li>
+                            <li>Пресс-релизы</li>
+                            <li>Видео о проблемах паролей</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Недели 4-8</div>
+                        <h3>Вовлечение</h3>
+                        <ul>
+                            <li>Образовательная кампания</li>
+                            <li>Запуск челленджа</li>
+                            <li>Флешмобы в городах</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Недели 9-12</div>
+                        <h3>Активация</h3>
+                        <ul>
+                            <li>День без пароля</li>
+                            <li>Марафон в Парке Горького</li>
+                            <li>Массовая активация OnePass</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="kpi">
+        <div class="container">
+            <h2 class="section-title">KPI и прогнозы</h2>
+            
+            <div class="card">
+                <h3 class="card-title">Ключевые показатели</h3>
+                
+                <table class="kpi-table">
+                    <thead>
+                        <tr>
+                            <th>Показатель</th>
+                            <th>Цель</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Новые активации OnePass</td>
+                            <td>5,000,000</td>
+                        </tr>
+                        <tr>
+                            <td>Медиа-охват</td>
+                            <td>100,000,000</td>
+                        </tr>
+                        <tr>
+                            <td>UGC видео</td>
+                            <td>50,000</td>
+                        </tr>
+                        <tr>
+                            <td>Упоминания в СМИ</td>
+                            <td>1000+</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+    
+    <section id="budget">
+        <div class="container">
+            <h2 class="section-title">Бюджет и ресурсы</h2>
+            
+            <div class="card">
+                <h3 class="card-title">Общий бюджет: 3,000,000 рублей</h3>
+                
+                <div class="budget-grid">
+                    <div class="budget-item">
+                        <div class="budget-category">Социальные сети</div>
+                        <div class="budget-amount">700,000 ₽</div>
+                    </div>
+                    
+                    <div class="budget-item">
+                        <div class="budget-category">ТВ реклама</div>
+                        <div class="budget-amount">600,000 ₽</div>
+                    </div>
+                    
+                    <div class="budget-item">
+                        <div class="budget-category">Цифровой маркетинг</div>
+                        <div class="budget-amount">450,000 ₽</div>
+                    </div>
+                    
+                    <div class="budget-item">
+                        <div class="budget-category">PR и медиа</div>
+                        <div class="budget-amount">300,000 ₽</div>
+                    </div>
+                    
+                    <div class="budget-item">
+                        <div class="budget-category">Событие</div>
+                        <div class="budget-amount">400,000 ₽</div>
+                    </div>
+                    
+                    <div class="budget-item">
+                        <div class="budget-category">Контент</div>
+                        <div class="budget-amount">300,000 ₽</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="cta-title">Готовы изменить будущее безопасности?</h2>
+            <p>Присоединяйтесь к инициативе VK "День без пароля"!</p>
+            <a href="#" class="cta-button">Узнать больше</a>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>Спецпроект VK: "День без пароля"</p>
+            <p>© 2024 VK</p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        const observerOptions = {
+            threshold: 0.3,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.stat-card, .method-card, .audience-card, .budget-item').forEach(el => {
+            el.style.opacity = 0;
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
